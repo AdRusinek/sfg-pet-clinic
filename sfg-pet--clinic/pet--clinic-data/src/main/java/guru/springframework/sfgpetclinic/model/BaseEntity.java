@@ -1,5 +1,7 @@
 package guru.springframework.sfgpetclinic.model;
 
+import org.springframework.data.repository.CrudRepository;
+
 import java.io.Serializable;
 
 public class BaseEntity implements Serializable {
@@ -13,4 +15,5 @@ public class BaseEntity implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+
 }
