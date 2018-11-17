@@ -4,8 +4,18 @@ import guru.springframework.sfgpetclinic.model.BaseEntity;
 
 import java.util.*;
 
-public abstract class AbstractMapService<T extends BaseEntity,ID extends Long>  {
+/**
+ *
+ * @param <T> extend BaseEntity because we need to have access to the getID() method from that Class
+ *           and this way we also ensure that every Object will have this method
+ * @param <ID> it extends Long because we need it to implement autoGen ID
+ */
+public abstract class AbstractMapService<T extends BaseEntity, ID extends Long>  {
 
+    /**
+     * comment test
+     * Long because it will allow us to use nextID() method.
+     */
     protected Map<Long,T> map = new HashMap<>();
 
     Set<T> findAll(){
@@ -37,6 +47,13 @@ public abstract class AbstractMapService<T extends BaseEntity,ID extends Long>  
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
     }
 
+    /**
+     *  If the ID has never been initialized before it will throw the exception
+     *  and to handle it catch block will implement this ID as 1Long
+     *  Collections.max(map.keySet()) + 1 -> it is checking the size of list and generate
+     *  next value if it is not null
+     * @return next ID value
+     */
     private Long getNextID() {
 
         Long nextID = null;
