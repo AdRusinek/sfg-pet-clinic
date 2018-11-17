@@ -4,8 +4,6 @@ import guru.springframework.sfgpetclinic.model.Owner;
 import guru.springframework.sfgpetclinic.model.Vet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.VetService;
-import guru.springframework.sfgpetclinic.services.map.OwnerServiceMap;
-import guru.springframework.sfgpetclinic.services.map.VetServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -15,9 +13,16 @@ public class DataLoader implements CommandLineRunner {
     private final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerServiceMap();
-        vetService = new VetServiceMap();
+    /**
+     *      so any implementation of that interfaces in the spring context will gonna be autowired
+     *      that is why this way this is done
+     *      about version spring 4.2 u had to give this constructor @Autowired annotation
+     * @param ownerService implementation of diff Services
+     * @param vetService  -||-
+     */
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
