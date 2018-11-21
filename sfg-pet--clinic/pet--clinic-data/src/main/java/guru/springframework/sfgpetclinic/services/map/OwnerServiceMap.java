@@ -11,7 +11,7 @@ import java.util.Set;
 
 // @Component, @Service are pretty much the same, it is more of indication of a behaviour
 @Service
-public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements OwnerService {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;
     private final PetService petService;
@@ -34,17 +34,17 @@ public class OwnerServiceMap extends AbstractMapService<Owner,Long> implements O
     @Override
     public Owner save(Owner object) {
 
-        if(object != null) {
-            if(object.getPets() != null) {
+        if (object != null) {
+            if (object.getPets() != null) {
                 object.getPets().forEach(pet -> {
-                    if(pet.getPetType() != null) {
-                        if(pet.getPetType().getId() == null) {
+                    if (pet.getPetType() != null) {
+                        if (pet.getPetType().getId() == null) {
                             pet.setPetType(petTypeService.save(pet.getPetType()));
                         }
                     } else {
                         throw new RuntimeException("Pet type is required.");
                     }
-                    if(pet.getId() == null) {
+                    if (pet.getId() == null) {
                         Pet savedPet = petService.save(pet);
                         pet.setId(savedPet.getId());
                     }
