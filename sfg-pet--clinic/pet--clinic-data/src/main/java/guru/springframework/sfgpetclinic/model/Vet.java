@@ -1,10 +1,18 @@
 package guru.springframework.sfgpetclinic.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "vets")
 public class Vet extends Person {
 
+    // JPA is going to try to load everything all at once
+    // By lazy init, which is the default, it doesn't load until it is asked for it
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "vet_specialities", joinColumns = @JoinColumn(name = "vet_id"),
+            inverseJoinColumns = @JoinColumn(name = "speciality_id"))
     private Set<Speciality> specialities = new HashSet<>();
 
     public Set<Speciality> getSpecialities() {
