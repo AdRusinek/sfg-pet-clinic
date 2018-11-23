@@ -5,12 +5,17 @@ import guru.springframework.sfgpetclinic.model.Pet;
 import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.PetService;
 import guru.springframework.sfgpetclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 // @Component, @Service are pretty much the same, it is more of indication of a behaviour
+// @Profile if we don't specify an active profile, I only want this class to be implemented if the default
+// profile is active or if the map profile is active, now if I specify any active profile default is not active
+// so that is why I impl both
 @Service
+@Profile({"default","map"})
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetTypeService petTypeService;

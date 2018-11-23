@@ -24,7 +24,7 @@ public class Pet extends BaseEntity {
     private LocalDate birthDate;
 
     // if I delete pet the visits will be also deleted
-    @OneToMany(cascade = CascadeType.ALL,mappedBy = "pet")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private Set<Visit> visits = new HashSet<>();
 
     public String getName() {
