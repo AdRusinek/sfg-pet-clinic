@@ -8,6 +8,7 @@ import guru.springframework.sfgpetclinic.services.PetTypeService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 // @Component, @Service are pretty much the same, it is more of indication of a behaviour
@@ -24,6 +25,12 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
     public OwnerMapService(PetTypeService petTypeService, PetService petService) {
         this.petTypeService = petTypeService;
         this.petService = petService;
+    }
+
+    @Override
+    public List<Owner> findAllByLastNameLike(String lastName) {
+        // todo - impl
+        return null;
     }
 
     @Override
