@@ -36,7 +36,7 @@ public class Owner extends Person {
 
     // If i delete owner, then that is going to cascade down
     // if i have pets and i delete the owner of the pet, the pets will also get deleted
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner" )
     private Set<Pet> pets = new HashSet<>();
 
 }
